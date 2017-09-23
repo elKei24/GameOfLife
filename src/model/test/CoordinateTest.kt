@@ -12,7 +12,14 @@ internal class CoordinateTest {
     fun testPlus() {
         val c1 = Coordinate(-3, 1)
         val c2 = Coordinate(4, -2)
-        assertEquals(Coordinate(1, -1), c1 +c2)
+        assertEquals(Coordinate(1, -1), c1 + c2)
+    }
+
+    @Test
+    fun testMinus() {
+        val c1 = Coordinate(-3, 1)
+        val c2 = Coordinate(4, -2)
+        assertEquals(Coordinate(-7, 3), c1 - c2)
     }
 
     @Test
@@ -48,5 +55,30 @@ internal class CoordinateTest {
         val left = Coordinate(10, 4)
         val right = Coordinate(-4, -2)
         assertEquals(Coordinate(-2, 0), left % right)
+    }
+
+    @Test
+    internal fun testMaximalCoordinateOfRectangle() {
+        val c1 = Coordinate(5, -3)
+        val c2 = Coordinate(2, 2)
+        assertEquals(Coordinate(5, 2), c1.maximalCoordinateOfRectangleWith(c2))
+    }
+
+    @Test
+    internal fun testMinimalCoordinateOfRectangle() {
+        val c1 = Coordinate(5, -3)
+        val c2 = Coordinate(2, 2)
+        assertEquals(Coordinate(2, -3), c1.maximalCoordinateOfRectangle(c2))
+    }
+
+    @Test
+    internal fun testGetCoordinatesInRectangleWith() {
+        val c1 = Coordinate(1, -3)
+        val c2 = Coordinate(2, 2)
+        val rectangle = c1.getCoordinatesInRectangleWith(c2)
+        assert(rectangle.contains(c1))
+        assert(rectangle.contains(c2))
+        assert(rectangle.contains(Coordinate(2, 0)))
+        assert(!rectangle.contains(Coordinate(1, -4)))
     }
 }
