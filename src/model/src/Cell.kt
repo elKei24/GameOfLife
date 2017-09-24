@@ -1,17 +1,18 @@
 import java.util.concurrent.CopyOnWriteArrayList
 
-class Cell(var living : Boolean = false) {
+class Cell(living : Boolean = false) {
     private val listeners = CopyOnWriteArrayList<CellListener>()
 
-    fun updateToNextGeneration(livingNeighbours: Int) {
-        val newLiving = getNextGenerationLiving(livingNeighbours)
-        if (living != newLiving) {
-            living = newLiving
+    var living = living
+    set(value) {
+        if (field != value) {
+            field = value
             notifyCellLivingChanged()
         }
     }
-    private fun getNextGenerationLiving(livingNeighbours: Int) : Boolean {
-        return if (!living)
+
+    fun updateToNextGeneration(livingNeighbours: Int) {
+        living = if (!living)
             livingNeighbours == 3
         else
             livingNeighbours == 2 || livingNeighbours == 3
