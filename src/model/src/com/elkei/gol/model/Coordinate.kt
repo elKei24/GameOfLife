@@ -1,3 +1,5 @@
+package com.elkei.gol.model
+
 import java.util.stream.Collectors
 
 data class Coordinate(val x : Int, val y : Int) : Comparable<Coordinate> {
@@ -29,7 +31,7 @@ data class Coordinate(val x : Int, val y : Int) : Comparable<Coordinate> {
         val maximal = maximalCoordinateOfRectangleWith(other)
         return (minimal.x..maximal.x).map { x ->
             (minimal.y..maximal.y).map { y -> Coordinate(x, y) }
-        }.stream().flatMap { column -> column.stream() }.collect(Collectors.toList())
+        }.stream().flatMap { column -> column.stream() }.collect(Collectors.toList())!!
     }
 
     fun maximalCoordinateOfRectangleWith(other: Coordinate): Coordinate {

@@ -1,3 +1,5 @@
+import com.elkei.gol.model.Coordinate
+import com.elkei.gol.model.Table
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.BeforeEach
@@ -8,7 +10,7 @@ internal class TableTest {
 
     @BeforeEach
     fun initTable() {
-        table = Table(Coordinate(2, 2), {it -> it})
+        table = Table(Coordinate(2, 2), { it -> it })
     }
 
     @Test
@@ -38,13 +40,13 @@ internal class TableTest {
 
     @Test
     fun getHighestCoordinateNegative() {
-        val negativeTable = Table(Coordinate(-3, -1), {it -> it})
+        val negativeTable = Table(Coordinate(-3, -1), { it -> it })
         assertEquals(Coordinate(-2, 0), negativeTable.getFarestCoordinate())
     }
 
     @Test
     fun getHighestCoordinateEmpty() {
-        val emptyTable = Table(Coordinate(0, 3), {it -> it})
+        val emptyTable = Table(Coordinate(0, 3), { it -> it })
         assertEquals(null, emptyTable.getFarestCoordinate())
     }
 

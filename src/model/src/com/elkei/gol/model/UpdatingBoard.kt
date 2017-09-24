@@ -1,3 +1,5 @@
+package com.elkei.gol.model
+
 import java.util.*
 
 class UpdatingBoard(

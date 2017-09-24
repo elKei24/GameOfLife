@@ -1,3 +1,5 @@
+package com.elkei.gol.model
+
 import java.util.concurrent.CopyOnWriteArrayList
 
 class Cell(living : Boolean = false) {

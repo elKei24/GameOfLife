@@ -1,9 +1,15 @@
-package actions
+package com.elkei.gol.gui.actions
 
 import java.awt.Window
 import java.awt.event.ActionEvent
 import java.awt.event.KeyEvent
 import javax.swing.KeyStroke
+
+class FileMenuAction : ResourceAction("file") {
+    override fun actionPerformed(p0: ActionEvent?) {
+        //nothing to do, just open the submenu
+    }
+}
 
 /**
  * An action that disposes a given window when triggered.

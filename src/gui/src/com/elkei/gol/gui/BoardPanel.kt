@@ -1,3 +1,7 @@
+package com.elkei.gol.gui
+
+import com.elkei.gol.model.Board
+import com.elkei.gol.model.Coordinate
 import java.awt.GridBagConstraints
 import java.awt.GridBagLayout
 import javax.swing.JPanel

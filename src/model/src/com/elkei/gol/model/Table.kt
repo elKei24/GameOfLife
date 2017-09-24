@@ -1,3 +1,5 @@
+package com.elkei.gol.model
+
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 

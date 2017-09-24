@@ -1,3 +1,7 @@
+package com.elkei.gol.gui
+
+import com.elkei.gol.model.Cell
+import com.elkei.gol.model.CellListener
 import java.awt.Color
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent

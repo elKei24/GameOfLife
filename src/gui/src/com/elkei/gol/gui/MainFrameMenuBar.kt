@@ -1,4 +1,6 @@
-import actions.FileMenuAction
+package com.elkei.gol.gui
+
+import com.elkei.gol.gui.actions.FileMenuAction
 import javax.swing.JMenu
 import javax.swing.JMenuBar
 

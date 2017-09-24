@@ -1,4 +1,4 @@
 /**
  * Package for all the actions of the GOL GUI.
  */
-package actions;
+package com.elkei.gol.gui.actions;
