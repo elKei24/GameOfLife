@@ -1,4 +1,4 @@
-package actions
+package com.elkei.gol.gui.actions
 
 import javax.swing.AbstractAction
 import javax.swing.Action
@@ -26,7 +26,7 @@ abstract class CustomizableAction(name: String? = null, icon: Icon? = null, shor
         get() = getValue(Action.ACCELERATOR_KEY) as KeyStroke?
         set(value) = putValue(Action.ACCELERATOR_KEY, value)
 
-    var mnemoric: Int?
+    var mnemonic: Int?
         get() = getValue(Action.MNEMONIC_KEY) as Int?
         set(value) = putValue(Action.MNEMONIC_KEY, value)
 
@@ -41,7 +41,7 @@ abstract class CustomizableAction(name: String? = null, icon: Icon? = null, shor
     init {
         this.shortDescription = shortDescription
         this.accelerator = accelerator
-        this.mnemoric = mnemoric
+        this.mnemonic = mnemonic
         this.actionCommand = actionCommand
         this.longDescription = longDescription
         this.enabled = enabled

@@ -1,4 +1,4 @@
-package actions
+package com.elkei.gol.gui.actions
 
 import java.util.*
 import javax.swing.Icon
@@ -14,7 +14,7 @@ abstract class ResourceAction(key: String, locale: Locale = Locale.getDefault(),
         this.name = actionResources.getActionName(key)
         this.shortDescription = actionResources.getActionShortDescription(key)
         this.longDescription = actionResources.getActionLongDescription(key)
-        this.mnemoric = actionResources.getActionMnemoric(key)
+        this.mnemonic = actionResources.getActionMnemoric(key)
         this.accelerator = accelerator
         this.actionCommand = actionCommand
     }
