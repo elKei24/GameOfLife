@@ -1,0 +1,21 @@
+import java.awt.GridBagConstraints
+import java.awt.GridBagLayout
+import javax.swing.JPanel
+
+class BoardPanel(val board: Board) : JPanel(GridBagLayout(), true) {
+    init {
+        board.allCoordinates().forEach { coordinate ->
+            addCellPanelAt(coordinate)
+        }
+    }
+
+    private fun addCellPanelAt(coordinate: Coordinate) {
+        val c = GridBagConstraints()
+        c.fill = GridBagConstraints.BOTH
+        c.gridx = coordinate.x
+        c.gridy = coordinate.y
+        add(getNewCellPanelForCoordinate(coordinate), c)
+    }
+
+    private fun getNewCellPanelForCoordinate(coordinate: Coordinate) = CellPanel(board.getItemForCoordinate(coordinate))
+}
