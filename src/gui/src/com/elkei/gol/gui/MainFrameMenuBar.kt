@@ -1,17 +1,25 @@
 package com.elkei.gol.gui
 
 import com.elkei.gol.gui.actions.FileMenuAction
+import com.elkei.gol.gui.actions.GenerationsMenuAction
 import javax.swing.JMenu
 import javax.swing.JMenuBar
 
-class MainFrameMenuBar(mainForm: MainFrame) : JMenuBar() {
+class MainFrameMenuBar(mainFrame: MainFrame) : JMenuBar() {
     init {
-        add(MainFrameFileMenu(mainForm))
+        add(MainFrameFileMenu(mainFrame))
+        add(MainFrameGenerationsMenu(mainFrame))
     }
 
-    private class MainFrameFileMenu(mainForm: MainFrame) : JMenu(FileMenuAction()) {
+    private class MainFrameFileMenu(mainFrame: MainFrame) : JMenu(FileMenuAction()) {
         init {
-            add(mainForm.exitAction)
+            add(mainFrame.exitAction)
+        }
+    }
+
+    private class MainFrameGenerationsMenu(mainFrame: MainFrame) : JMenu(GenerationsMenuAction()) {
+        init {
+            add(mainFrame.nextGenerationAction)
         }
     }
 }
