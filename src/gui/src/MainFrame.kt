@@ -1,7 +1,6 @@
 import actions.ExitAction
 import java.awt.Dimension
 import javax.swing.JFrame
-import javax.swing.JTable
 
 class MainFrame : JFrame(GuiResources.default.getMainFrameTitle()) {
     companion object {
@@ -12,8 +11,6 @@ class MainFrame : JFrame(GuiResources.default.getMainFrameTitle()) {
     }
 
     val exitAction = ExitAction(this)
-
-    lateinit private var contentTable: JTable
 
     init {
         defaultCloseOperation = JFrame.EXIT_ON_CLOSE

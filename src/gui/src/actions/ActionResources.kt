@@ -12,7 +12,7 @@ class ActionResources(locale: Locale = Locale.getDefault()) {
 
         val default = ActionResources()
     }
-    val bundle = ResourceBundle.getBundle(BUNDLE_FILE, locale)
+    private val bundle: ResourceBundle = ResourceBundle.getBundle(BUNDLE_FILE, locale)
 
     fun getActionName(actionKey: String): String? = bundle.getStringOrNull(getNameKey(actionKey))
     private fun getNameKey(actionKey: String): String = actionKey

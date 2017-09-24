@@ -10,7 +10,7 @@ class GuiResources(locale: Locale = Locale.getDefault()) {
         val default = GuiResources()
         private val logger = Logger.getLogger(GuiResources::class.qualifiedName)
     }
-    val texts = ResourceBundle.getBundle(GUI_TEXTS_FILE, locale)
+    private val texts: ResourceBundle = ResourceBundle.getBundle(GUI_TEXTS_FILE, locale)
 
     fun getMainFrameTitle(): String {
         return texts.getStringSafe(GUI_TEXT_MAINTITLE)
