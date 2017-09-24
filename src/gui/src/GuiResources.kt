@@ -4,7 +4,7 @@ import java.util.logging.Logger
 
 class GuiResources(locale: Locale = Locale.getDefault()) {
     companion object {
-        private const val GUI_TEXTS_FILE = "GuiTexts"
+        private const val GUI_TEXTS_FILE = "res/GuiTexts"
         private const val GUI_TEXT_MAINTITLE = "MainFrame.title"
 
         val default = GuiResources()

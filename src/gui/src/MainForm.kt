@@ -1,14 +1,7 @@
-import javax.swing.JFrame
+import javax.swing.JPanel
+import javax.swing.JTable
 
-class MainForm : JFrame(GuiResources.default.getMainFrameTitle()) {
-    companion object {
-        @JvmStatic
-        fun main(args: Array<String>) {
-            MainForm().isVisible = true
-        }
-    }
-
-    init {
-        defaultCloseOperation = EXIT_ON_CLOSE
-    }
+class MainForm : JPanel() {
+    lateinit private var contentTable: JTable
 }
+

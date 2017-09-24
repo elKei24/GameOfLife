@@ -6,9 +6,9 @@ import javax.swing.Icon
 import javax.swing.KeyStroke
 
 abstract class CustomizableAction(name: String? = null, icon: Icon? = null, shortDescription: String? = null,
-                                  accelerator: KeyStroke? = null, actionCommand: String? = null,
-                                  longDescription: String? = null, enabled: Boolean = true) :
-        AbstractAction(name, icon) {
+                                  accelerator: KeyStroke? = null, mnemonic: Int? = null,
+                                  actionCommand: String? = null, longDescription: String? = null,
+                                  enabled: Boolean = true) : AbstractAction(name, icon) {
 
     var name: String?
     get() = getValue(Action.NAME) as String?
@@ -26,6 +26,10 @@ abstract class CustomizableAction(name: String? = null, icon: Icon? = null, shor
         get() = getValue(Action.ACCELERATOR_KEY) as KeyStroke?
         set(value) = putValue(Action.ACCELERATOR_KEY, value)
 
+    var mnemoric: Int?
+        get() = getValue(Action.MNEMONIC_KEY) as Int?
+        set(value) = putValue(Action.MNEMONIC_KEY, value)
+
     var actionCommand: String?
         get() = getValue(Action.ACTION_COMMAND_KEY) as String?
         set(value) = putValue(Action.ACTION_COMMAND_KEY, value)
@@ -37,6 +41,7 @@ abstract class CustomizableAction(name: String? = null, icon: Icon? = null, shor
     init {
         this.shortDescription = shortDescription
         this.accelerator = accelerator
+        this.mnemoric = mnemoric
         this.actionCommand = actionCommand
         this.longDescription = longDescription
         this.enabled = enabled
