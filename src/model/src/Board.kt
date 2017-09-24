@@ -1,7 +1,8 @@
 /** A class simulating a board of Connways Game Of Live */
-class Board(size : Coordinate, coordinatesOfLivingCells : List<Coordinate> = List(0, {Coordinate(0, 0)}))
+open class Board(size : Coordinate, coordinatesOfLivingCells : List<Coordinate> = emptyList())
     : Table<Cell>(size, {coordinate -> Cell(coordinatesOfLivingCells.contains(coordinate)) }) {
 
+    @Synchronized
     fun updateToNextGeneration() {
         val neighbours = Table(size, this::getNumberOfLivingNeighbours)
         allCoordinates().forEach { coordinate ->
