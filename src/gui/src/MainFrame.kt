@@ -17,7 +17,6 @@ class MainFrame : JFrame(GuiResources.default.getMainFrameTitle()) {
 
         jMenuBar = MainFrameMenuBar(this)
 
-        add(MainForm())
         size = Dimension(500, 500)
     }
 }
