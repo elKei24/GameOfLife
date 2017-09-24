@@ -14,6 +14,8 @@ class BoardPanel(val board: Board) : JPanel(GridBagLayout(), true) {
         c.fill = GridBagConstraints.BOTH
         c.gridx = coordinate.x
         c.gridy = coordinate.y
+        c.weightx = 1.0
+        c.weighty = 1.0
         add(getNewCellPanelForCoordinate(coordinate), c)
     }
 
