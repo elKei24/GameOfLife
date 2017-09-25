@@ -1,17 +1,15 @@
 package com.elkei.gol.model
 
-import java.util.concurrent.CopyOnWriteArrayList
+import com.elkei.gol.model.util.ListenersManager
+import com.elkei.gol.model.util.Observable
+import kotlin.properties.Delegates
 
-class Cell(living : Boolean = false) {
-    private val listeners = CopyOnWriteArrayList<CellListener>()
+class Cell(living : Boolean = false) : Observable<CellListener>{
+    private val listenersManager = ListenersManager<CellListener>()
 
-    var living = living
-    set(value) {
-        if (field != value) {
-            field = value
-            notifyCellLivingChanged()
-        }
-    }
+    var living: Boolean by Delegates.observable(living, {
+        _, old, new -> if (old != new) notifyCellLivingChanged()
+    })
 
     fun updateToNextGeneration(livingNeighbours: Int) {
         living = if (!living)
@@ -20,9 +18,9 @@ class Cell(living : Boolean = false) {
             livingNeighbours == 2 || livingNeighbours == 3
     }
 
-    fun addListener(cellListener: CellListener) = listeners.add(cellListener)
-    fun removeListener(cellListener: CellListener) = listeners.remove(cellListener)
-    private fun notifyCellLivingChanged() = listeners.forEach{it.cellLivingChanged(this)}
+    override fun addListener(listener: CellListener) = listenersManager.addListener(listener)
+    override fun removeListener(listener: CellListener) = listenersManager.removeListener(listener)
+    private fun notifyCellLivingChanged() = listenersManager.forEach { it.cellLivingChanged(this) }
 }
 
 interface CellListener {
