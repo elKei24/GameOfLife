@@ -14,7 +14,10 @@ class UpdatingBoard(
 
     var running = false
     private set(value) {
-        if (field != value) notifyRunningChanged()
+        if (field != value) {
+            field = value
+            notifyRunningChanged()
+        }
     }
 
     var msBetweenUpdates: Long = msBetweenUpdates
@@ -32,6 +35,7 @@ class UpdatingBoard(
         val newTimer = Timer("BoardUpdaterThread", true)
         newTimer.schedule(BoardUpdateTask(), 0L, msBetweenUpdates)
         timer = newTimer
+        running = true
     }
 
     /**
@@ -59,7 +63,7 @@ interface UpdatingBoardListener {
      * Called if an observed [UpdatingBoard] changes its [UpdatingBoard.running] state
      *
      * @param board the board that started/stopped updating
-     * @param updating the new value of [UpdatingBoard.running] of [board]
+     * @param updatingFrequently the new value of [UpdatingBoard.running] of [board]
      */
-    fun updatingBoardRunningChanged(board: UpdatingBoard, updating: Boolean)
+    fun updatingBoardRunningChanged(board: UpdatingBoard, updatingFrequently: Boolean)
 }
