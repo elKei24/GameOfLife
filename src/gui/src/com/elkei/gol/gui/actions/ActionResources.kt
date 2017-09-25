@@ -14,7 +14,7 @@ class ActionResources(locale: Locale = Locale.getDefault()) {
     }
     private val bundle: ResourceBundle = ResourceBundle.getBundle(BUNDLE_FILE, locale)
 
-    fun getActionName(actionKey: String): String? = bundle.getStringOrNull(getNameKey(actionKey))
+    fun getActionName(actionKey: String): String? = bundle.getStringOrNull(getNameKey(actionKey)) ?: actionKey
     private fun getNameKey(actionKey: String): String = actionKey
 
     fun getActionMnemoric(actionKey: String): Int? {
