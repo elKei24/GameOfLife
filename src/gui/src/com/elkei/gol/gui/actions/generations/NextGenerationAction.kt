@@ -8,7 +8,7 @@ import javax.swing.KeyStroke
 
 class NextGenerationAction(private val boardPanel: BoardPanel) :
         ResourceAction("generations.step", accelerator = KeyStroke.getKeyStroke(KeyEvent.VK_F4, 0)) {
-    override fun actionPerformed(p0: ActionEvent?) {
+    override fun actionPerformed(actionEvent: ActionEvent) {
         boardPanel.updateToNextGeneration()
     }
 }

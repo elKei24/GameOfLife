@@ -9,7 +9,7 @@ import javax.swing.KeyStroke
 
 class NewBoardAction(private val mainFrame: MainFrame) :
         ResourceAction("file.new", accelerator = KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_DOWN_MASK)) {
-    override fun actionPerformed(p0: ActionEvent?) {
+    override fun actionPerformed(actionEvent: ActionEvent) {
         NewBoardDialog(mainFrame).isVisible = true
     }
 }

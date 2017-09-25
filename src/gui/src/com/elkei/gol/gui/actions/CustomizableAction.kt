@@ -1,14 +1,15 @@
 package com.elkei.gol.gui.actions
 
+import java.awt.event.ActionEvent
 import javax.swing.AbstractAction
 import javax.swing.Action
 import javax.swing.Icon
 import javax.swing.KeyStroke
 
-abstract class CustomizableAction(name: String? = null, icon: Icon? = null, shortDescription: String? = null,
-                                  accelerator: KeyStroke? = null, mnemonic: Int? = null,
-                                  actionCommand: String? = null, longDescription: String? = null,
-                                  enabled: Boolean = true) : AbstractAction(name, icon) {
+open class CustomizableAction(name: String? = null, icon: Icon? = null, shortDescription: String? = null,
+                              accelerator: KeyStroke? = null, mnemonic: Int? = null,
+                              actionCommand: String? = null, longDescription: String? = null,
+                              enabled: Boolean = true) : AbstractAction(name, icon) {
 
     var name: String?
     get() = getValue(Action.NAME) as String?
@@ -45,5 +46,9 @@ abstract class CustomizableAction(name: String? = null, icon: Icon? = null, shor
         this.actionCommand = actionCommand
         this.longDescription = longDescription
         this.enabled = enabled
+    }
+
+    override fun actionPerformed(actionEvent: ActionEvent) {
+        //default implementation, do nothing
     }
 }

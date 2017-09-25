@@ -18,7 +18,7 @@ class StartGenerationUpdatesAction(private val boardPanel: UpdatingBoardPanel) :
         })
         updateEnabled()
     }
-    override fun actionPerformed(p0: ActionEvent?) {
+    override fun actionPerformed(actionEvent: ActionEvent) {
         boardPanel.startGenerationUpdates()
     }
     private fun updateEnabled() {

@@ -15,7 +15,7 @@ import javax.swing.KeyStroke
 class ExitAction(private val window: Window) :
         ResourceAction("file.exit", accelerator = KeyStroke.getKeyStroke(KeyEvent.VK_F4, KeyEvent.ALT_DOWN_MASK)) {
 
-    override fun actionPerformed(p0: ActionEvent?) {
+    override fun actionPerformed(actionEvent: ActionEvent) {
         window.dispose()
     }
 
