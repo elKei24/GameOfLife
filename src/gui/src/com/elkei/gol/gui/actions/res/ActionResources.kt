@@ -1,11 +1,11 @@
-package com.elkei.gol.gui.actions
+package com.elkei.gol.gui.actions.res
 
 import java.awt.event.KeyEvent
 import java.util.*
 
 class ActionResources(locale: Locale = Locale.getDefault()) {
     companion object {
-        private const val BUNDLE_FILE = "com/elkei/gol/gui/res/GuiActions"
+        private const val BUNDLE_FILE = "com/elkei/gol/gui/actions/res/GuiActions"
         private const val MNEMORIC_SUFFIX = ".mnem"
         private const val SHORT_DESCRIPTION_SUFFIX = ".short"
         private const val LONG_DESCRIPTION_SUFFIX = ".long"

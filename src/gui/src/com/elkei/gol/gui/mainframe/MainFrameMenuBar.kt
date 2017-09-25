@@ -1,4 +1,4 @@
-package com.elkei.gol.gui
+package com.elkei.gol.gui.mainframe
 
 import com.elkei.gol.gui.actions.FileMenuAction
 import com.elkei.gol.gui.actions.GenerationsMenuAction

@@ -1,4 +1,4 @@
-package com.elkei.gol.gui
+package com.elkei.gol.gui.res
 
 import java.util.*
 import java.util.logging.Level

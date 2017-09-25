@@ -1,5 +1,6 @@
 package com.elkei.gol.gui
 
+import com.elkei.gol.gui.mainframe.MainFrame
 import javax.swing.UIManager
 
 

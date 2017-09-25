@@ -1,7 +1,7 @@
 package com.elkei.gol.gui.actions
 
-import com.elkei.gol.gui.BoardPanel
-import com.elkei.gol.gui.UpdatingBoardPanel
+import com.elkei.gol.gui.modelpanels.BoardPanel
+import com.elkei.gol.gui.modelpanels.UpdatingBoardPanel
 import com.elkei.gol.model.UpdatingBoard
 import com.elkei.gol.model.UpdatingBoardListener
 import java.awt.event.ActionEvent

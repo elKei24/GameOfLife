@@ -1,9 +1,11 @@
-package com.elkei.gol.gui
+package com.elkei.gol.gui.mainframe
 
 import com.elkei.gol.gui.actions.ExitAction
 import com.elkei.gol.gui.actions.NextGenerationAction
 import com.elkei.gol.gui.actions.StartGenerationUpdatesAction
 import com.elkei.gol.gui.actions.StopGenerationUpdatesAction
+import com.elkei.gol.gui.modelpanels.UpdatingBoardPanel
+import com.elkei.gol.gui.res.GuiResources
 import com.elkei.gol.model.Coordinate
 import com.elkei.gol.model.UpdatingBoard
 import java.awt.BorderLayout

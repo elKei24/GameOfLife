@@ -1,4 +1,4 @@
-package com.elkei.gol.gui
+package com.elkei.gol.gui.modelpanels
 
 import com.elkei.gol.model.Cell
 import com.elkei.gol.model.CellListener

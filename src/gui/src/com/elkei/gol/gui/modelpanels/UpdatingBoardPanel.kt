@@ -1,4 +1,4 @@
-package com.elkei.gol.gui
+package com.elkei.gol.gui.modelpanels
 
 import com.elkei.gol.model.UpdatingBoard
 import com.elkei.gol.model.UpdatingBoardListener

@@ -1,5 +1,6 @@
 package com.elkei.gol.gui.actions
 
+import com.elkei.gol.gui.actions.res.ActionResources
 import java.util.*
 import javax.swing.Icon
 import javax.swing.KeyStroke
