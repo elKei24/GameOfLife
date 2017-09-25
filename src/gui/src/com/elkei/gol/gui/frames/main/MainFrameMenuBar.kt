@@ -3,6 +3,7 @@ package com.elkei.gol.gui.frames.main
 import com.elkei.gol.gui.actions.ActionsHolder
 import com.elkei.gol.gui.actions.file.FileMenuAction
 import com.elkei.gol.gui.actions.generations.GenerationsMenuAction
+import com.elkei.gol.gui.actions.generations.GenerationsSpeedMenuAction
 import javax.swing.JMenu
 import javax.swing.JMenuBar
 
@@ -24,6 +25,14 @@ class MainFrameMenuBar(actions: ActionsHolder) : JMenuBar() {
             add(actions.nextGenerationAction)
             add(actions.startGenerationUpdatesAction)
             add(actions.stopGenerationUpdatesAction)
+            add(MainFrameGenerationsSpeedMenu(actions))
+        }
+
+        private class MainFrameGenerationsSpeedMenu(actions: ActionsHolder) : JMenu(GenerationsSpeedMenuAction()) {
+            init {
+                add(actions.fasterGenerationUpdatesAction)
+                add(actions.slowerGenerationUpdatesAction)
+            }
         }
     }
 }

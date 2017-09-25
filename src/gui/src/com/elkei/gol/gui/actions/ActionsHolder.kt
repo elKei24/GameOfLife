@@ -2,9 +2,7 @@ package com.elkei.gol.gui.actions
 
 import com.elkei.gol.gui.actions.file.ExitAction
 import com.elkei.gol.gui.actions.file.NewBoardAction
-import com.elkei.gol.gui.actions.generations.NextGenerationAction
-import com.elkei.gol.gui.actions.generations.StartGenerationUpdatesAction
-import com.elkei.gol.gui.actions.generations.StopGenerationUpdatesAction
+import com.elkei.gol.gui.actions.generations.*
 import com.elkei.gol.gui.frames.main.MainFrame
 
 class ActionsHolder(mainFrame: MainFrame) {
@@ -16,4 +14,6 @@ class ActionsHolder(mainFrame: MainFrame) {
     val nextGenerationAction = NextGenerationAction(mainFrame.boardPanel)
     val startGenerationUpdatesAction = StartGenerationUpdatesAction(mainFrame.boardPanel)
     val stopGenerationUpdatesAction = StopGenerationUpdatesAction(mainFrame.boardPanel)
+    val slowerGenerationUpdatesAction = SlowerGenerationUpdatesAction(mainFrame.boardPanel)
+    val fasterGenerationUpdatesAction = FasterGenerationUpdatesAction(mainFrame.boardPanel)
 }

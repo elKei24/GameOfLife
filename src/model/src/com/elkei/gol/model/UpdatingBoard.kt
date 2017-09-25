@@ -7,10 +7,17 @@ import java.util.*
 class UpdatingBoard(
         size: Coordinate,
         coordinatesOfLivingCells: List<Coordinate> = emptyList(),
-        msBetweenUpdates: Long = 1000L
+        msBetweenUpdates: Long = 750L
 ) : Board(size, coordinatesOfLivingCells), Observable<UpdatingBoardListener> {
     private val listenersManager = ListenersManager<UpdatingBoardListener>()
     private var timer: Timer? = null
+    var generationCounter = 0
+    private set(value) {
+        if (value != field) {
+            field = value
+            notifyGenerationChanged()
+        }
+    }
 
     var running = false
     private set(value) {
@@ -22,8 +29,10 @@ class UpdatingBoard(
 
     var msBetweenUpdates: Long = msBetweenUpdates
     set(value) {
+        val oldValue = field
         field = value
         startGenerationUpdates()
+        if (oldValue != field) notifySpeedChanged()
     }
 
     /**
@@ -47,6 +56,11 @@ class UpdatingBoard(
         running = false
     }
 
+    override fun updateToNextGeneration() {
+        super.updateToNextGeneration()
+        generationCounter++
+    }
+
     private inner class BoardUpdateTask : TimerTask() {
         override fun run() {
             updateToNextGeneration()
@@ -54,6 +68,8 @@ class UpdatingBoard(
     }
 
     private fun notifyRunningChanged() = listenersManager.forEach { it.updatingBoardRunningChanged(this, running) }
+    private fun notifySpeedChanged() = listenersManager.forEach { it.updatingBoardSpeedChanged(this, msBetweenUpdates) }
+    private fun notifyGenerationChanged() = listenersManager.forEach { it.updatingBoardGenerationChanged(this, generationCounter) }
     override fun addListener(listener: UpdatingBoardListener) = listenersManager.addListener(listener)
     override fun removeListener(listener: UpdatingBoardListener) = listenersManager.removeListener(listener)
 }
@@ -65,5 +81,19 @@ interface UpdatingBoardListener {
      * @param board the board that started/stopped updating
      * @param updatingFrequently the new value of [UpdatingBoard.running] of [board]
      */
-    fun updatingBoardRunningChanged(board: UpdatingBoard, updatingFrequently: Boolean)
+    fun updatingBoardRunningChanged(board: UpdatingBoard, updatingFrequently: Boolean) {}
+    /**
+     * Called if an observed [UpdatingBoard] changes its [UpdatingBoard.msBetweenUpdates]
+     *
+     * @param board the board that changed its simulation speed
+     * @param msBetweenUpdates the new value of [UpdatingBoard.msBetweenUpdates] of [board]
+     */
+    fun updatingBoardSpeedChanged(board: UpdatingBoard, msBetweenUpdates: Long) {}
+    /**
+     * Called if an observed [UpdatingBoard] proceeds to the next generation
+     *
+     * @param board the board that proceeded to the next generations
+     * @param generation the new generation number
+     */
+    fun updatingBoardGenerationChanged(board: UpdatingBoard, generation: Int) {}
 }

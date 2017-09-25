@@ -19,4 +19,5 @@ abstract class ResourceAction(key: String, locale: Locale = Locale.getDefault(),
         this.accelerator = accelerator
         this.actionCommand = actionCommand
     }
+
 }

@@ -1,5 +1,6 @@
 package com.elkei.gol.gui.frames.main
 
+import com.elkei.gol.gui.SIMULATION_DELAY_DEFAULT
 import com.elkei.gol.gui.actions.ActionsHolder
 import com.elkei.gol.gui.modelpanels.UpdatingBoardPanel
 import com.elkei.gol.gui.res.GuiResources
@@ -12,7 +13,7 @@ import javax.swing.JFrame
 class MainFrame : JFrame(GuiResources.default.getStringOrKey(GuiResources.MAINTITLE_KEY)) {
     internal val boardPanel = UpdatingBoardPanel(UpdatingBoard(Coordinate(4, 5), listOf(Coordinate(0, 0),
             Coordinate(1, 0), Coordinate(0, 1), Coordinate(1, 1), Coordinate(2, 1),
-            Coordinate(1, 3), Coordinate(2, 3))))
+            Coordinate(1, 3), Coordinate(2, 3)), msBetweenUpdates = SIMULATION_DELAY_DEFAULT))
     private val actions = ActionsHolder(this)
 
     init {

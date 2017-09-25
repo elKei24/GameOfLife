@@ -5,7 +5,7 @@ open class Board(size : Coordinate, coordinatesOfLivingCells : List<Coordinate> 
     : Table<Cell>(size, { coordinate -> Cell(coordinatesOfLivingCells.contains(coordinate)) }) {
 
     @Synchronized
-    fun updateToNextGeneration() {
+    open fun updateToNextGeneration() {
         val neighbours = Table(size, this::getNumberOfLivingNeighbours)
         allCoordinates().forEach { coordinate ->
             getItemForCoordinate(coordinate).updateToNextGeneration(neighbours.getItemForCoordinate(coordinate))
