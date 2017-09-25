@@ -8,6 +8,7 @@ class GuiResources(locale: Locale = Locale.getDefault()) {
     companion object {
         private const val GUI_TEXTS_FILE = "com/elkei/gol/gui/res/GuiTexts"
         private const val GUI_TEXT_MAINTITLE = "MainFrame.title"
+        private const val GUI_TEXT_NEWBOARDTITLE = "NewBoardDialog.title"
 
         val default = GuiResources()
         private val logger = Logger.getLogger(GuiResources::class.qualifiedName)
@@ -16,6 +17,10 @@ class GuiResources(locale: Locale = Locale.getDefault()) {
 
     fun getMainFrameTitle(): String {
         return texts.getStringSafe(GUI_TEXT_MAINTITLE)
+    }
+
+    fun getNewBoardDialogTitle(): String {
+        return texts.getStringSafe(GUI_TEXT_NEWBOARDTITLE)
     }
 
     private fun ResourceBundle.getStringSafe(key: String) : String {

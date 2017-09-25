@@ -1,4 +1,4 @@
-package com.elkei.gol.gui.mainframe
+package com.elkei.gol.gui.frames.main
 
 import com.elkei.gol.gui.actions.ActionsHolder
 import com.elkei.gol.gui.actions.file.FileMenuAction
@@ -14,6 +14,7 @@ class MainFrameMenuBar(actions: ActionsHolder) : JMenuBar() {
 
     private class MainFrameFileMenu(actions: ActionsHolder) : JMenu(FileMenuAction()) {
         init {
+            add(actions.newBoardAction)
             add(actions.exitAction)
         }
     }

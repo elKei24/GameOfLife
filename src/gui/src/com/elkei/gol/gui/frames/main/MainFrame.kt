@@ -1,4 +1,4 @@
-package com.elkei.gol.gui.mainframe
+package com.elkei.gol.gui.frames.main
 
 import com.elkei.gol.gui.actions.ActionsHolder
 import com.elkei.gol.gui.modelpanels.UpdatingBoardPanel
