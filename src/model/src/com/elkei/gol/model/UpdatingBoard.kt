@@ -61,6 +61,10 @@ class UpdatingBoard(
         generationCounter++
     }
 
+    fun resetGenerationCounter() {
+        generationCounter = 0
+    }
+
     private inner class BoardUpdateTask : TimerTask() {
         override fun run() {
             updateToNextGeneration()

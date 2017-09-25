@@ -22,6 +22,6 @@ class StopGenerationUpdatesAction(private val boardPanel: UpdatingBoardPanel) :
         boardPanel.stopGenerationUpdates()
     }
     private fun updateEnabled() {
-        this.isEnabled = boardPanel.updatingBoard.running
+        this.isEnabled = boardPanel.board.running
     }
 }

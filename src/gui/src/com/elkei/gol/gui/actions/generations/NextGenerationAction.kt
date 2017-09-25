@@ -1,12 +1,12 @@
 package com.elkei.gol.gui.actions.generations
 
 import com.elkei.gol.gui.actions.ResourceAction
-import com.elkei.gol.gui.modelpanels.BoardPanel
+import com.elkei.gol.gui.modelpanels.UpdatingBoardPanel
 import java.awt.event.ActionEvent
 import java.awt.event.KeyEvent
 import javax.swing.KeyStroke
 
-class NextGenerationAction(private val boardPanel: BoardPanel) :
+class NextGenerationAction(private val boardPanel: UpdatingBoardPanel) :
         ResourceAction("generations.step", accelerator = KeyStroke.getKeyStroke(KeyEvent.VK_F4, 0)) {
     override fun actionPerformed(actionEvent: ActionEvent) {
         boardPanel.updateToNextGeneration()

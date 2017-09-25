@@ -9,6 +9,7 @@ class GuiResources(locale: Locale = Locale.getDefault()) {
         private const val GUI_TEXTS_FILE = "com/elkei/gol/gui/res/GuiTexts"
         const val MAINTITLE_KEY = "MainFrame.title"
         const val NEWBOARDTITLE_KEY = "NewBoardDialog.title"
+        const val GENERATION_LABEL = "MainFrame.status.generations"
 
         val default = GuiResources()
         private val logger = Logger.getLogger(GuiResources::class.qualifiedName)

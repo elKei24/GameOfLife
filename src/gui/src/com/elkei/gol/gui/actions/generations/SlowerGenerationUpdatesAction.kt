@@ -27,10 +27,10 @@ class SlowerGenerationUpdatesAction(private val boardPanel: UpdatingBoardPanel) 
     }
 
     override fun actionPerformed(actionEvent: ActionEvent) {
-        boardPanel.updatingBoard.msBetweenUpdates = calculateNewDelay()
+        boardPanel.board.msBetweenUpdates = calculateNewDelay()
     }
 
     private fun calculateNewDelay(): Long {
-        return (boardPanel.updatingBoard.msBetweenUpdates * SIMULATION_DELAY_FASTER_FACTOR).toLong()
+        return (boardPanel.board.msBetweenUpdates * SIMULATION_DELAY_FASTER_FACTOR).toLong()
     }
 }

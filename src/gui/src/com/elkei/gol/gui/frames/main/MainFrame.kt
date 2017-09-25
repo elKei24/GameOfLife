@@ -22,6 +22,7 @@ class MainFrame : JFrame(GuiResources.default.getStringOrKey(GuiResources.MAINTI
         layout = BorderLayout()
 
         add(boardPanel, BorderLayout.CENTER)
+        add(MainFrameStatusBar(this), BorderLayout.SOUTH)
 
         preferredSize = Dimension(700, 500)
         minimumSize = Dimension(170, 150)

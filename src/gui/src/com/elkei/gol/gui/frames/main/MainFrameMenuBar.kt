@@ -7,7 +7,7 @@ import com.elkei.gol.gui.actions.generations.GenerationsSpeedMenuAction
 import javax.swing.JMenu
 import javax.swing.JMenuBar
 
-class MainFrameMenuBar(actions: ActionsHolder) : JMenuBar() {
+internal class MainFrameMenuBar(actions: ActionsHolder) : JMenuBar() {
     init {
         add(MainFrameFileMenu(actions))
         add(MainFrameGenerationsMenu(actions))
