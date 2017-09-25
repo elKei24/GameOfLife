@@ -11,11 +11,11 @@ open class Table<T>(val size : Coordinate, init: (Coordinate) -> T) {
     }
 
     fun allCoordinates(): List<Coordinate> {
-        val highestCoordinate = getFarestCoordinate() ?: return LinkedList()
+        val highestCoordinate = getMostFarCoordinate() ?: return LinkedList()
         return Coordinate(0, 0).getCoordinatesInRectangleWith(highestCoordinate)
     }
 
-    fun getFarestCoordinate(): Coordinate? {
+    fun getMostFarCoordinate(): Coordinate? {
         if (size.area() == 0) return null
         return Coordinate(decreaseAbs(size.x), decreaseAbs(size.y))
     }

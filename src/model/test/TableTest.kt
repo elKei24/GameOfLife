@@ -35,19 +35,19 @@ internal class TableTest {
 
     @Test
     fun getHighestCoordinateNormal() {
-        assertEquals(Coordinate(1, 1), table.getFarestCoordinate())
+        assertEquals(Coordinate(1, 1), table.getMostFarCoordinate())
     }
 
     @Test
     fun getHighestCoordinateNegative() {
         val negativeTable = Table(Coordinate(-3, -1), { it -> it })
-        assertEquals(Coordinate(-2, 0), negativeTable.getFarestCoordinate())
+        assertEquals(Coordinate(-2, 0), negativeTable.getMostFarCoordinate())
     }
 
     @Test
     fun getHighestCoordinateEmpty() {
         val emptyTable = Table(Coordinate(0, 3), { it -> it })
-        assertEquals(null, emptyTable.getFarestCoordinate())
+        assertEquals(null, emptyTable.getMostFarCoordinate())
     }
 
 
