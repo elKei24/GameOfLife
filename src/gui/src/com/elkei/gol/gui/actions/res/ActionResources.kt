@@ -1,5 +1,6 @@
 package com.elkei.gol.gui.actions.res
 
+import com.elkei.gol.gui.util.MnemonicFinder
 import java.awt.event.KeyEvent
 import java.util.*
 
@@ -14,14 +15,22 @@ class ActionResources(locale: Locale = Locale.getDefault()) {
     }
     private val bundle: ResourceBundle = ResourceBundle.getBundle(BUNDLE_FILE, locale)
 
-    fun getActionName(actionKey: String): String? = bundle.getStringOrNull(getNameKey(actionKey)) ?: actionKey
+    fun getActionName(actionKey: String): String {
+        val actionNameWithMnem = getActionNameWithMnemCharOrNull(actionKey)
+        return if (actionNameWithMnem == null) actionKey else MnemonicFinder(actionNameWithMnem).getWithoutEscapeChar()
+    }
+    private fun getActionNameWithMnemCharOrNull(actionKey: String): String? = bundle.getStringOrNull(getNameKey(actionKey))
     private fun getNameKey(actionKey: String): String = actionKey
 
-    fun getActionMnemoric(actionKey: String): Int? {
-        val mnemChar = bundle.getStringOrNull(getMnemoricKey(actionKey))?.takeUnless(String::isEmpty)?.get(0) ?: return null
-        return KeyEvent.getExtendedKeyCodeForChar(mnemChar.toInt())
+    fun getActionMnemonic(actionKey: String): Int? {
+        val extraKeyMnemChar = bundle.getStringOrNull(getMnemonicKey(actionKey))?.takeUnless(String::isEmpty)?.get(0)
+        val mnemChar = extraKeyMnemChar ?: {
+            val actionNameWithMnemChar = getActionNameWithMnemCharOrNull(actionKey)
+            if (actionNameWithMnemChar == null) null else MnemonicFinder(actionNameWithMnemChar).getMnemonicChar()
+        }.invoke()
+        return if (mnemChar != null) KeyEvent.getExtendedKeyCodeForChar(mnemChar.toInt()) else null
     }
-    private fun getMnemoricKey(actionKey: String): String = actionKey + MNEMORIC_SUFFIX
+    private fun getMnemonicKey(actionKey: String): String = actionKey + MNEMORIC_SUFFIX
 
     fun getActionShortDescription(actionKey: String): String? = bundle.getStringOrNull(getShortDescriptionKey(actionKey))
     private fun getShortDescriptionKey(actionKey: String): String = actionKey + SHORT_DESCRIPTION_SUFFIX
