@@ -6,11 +6,15 @@ import java.awt.GridBagConstraints
 import java.awt.GridBagLayout
 import javax.swing.JPanel
 
-class BoardPanel(val board: Board) : JPanel(GridBagLayout(), true) {
+open class BoardPanel(private val board: Board) : JPanel(GridBagLayout(), true) {
     init {
         board.allCoordinates().forEach { coordinate ->
             addCellPanelAt(coordinate)
         }
+    }
+
+    fun updateToNextGeneration() {
+        board.updateToNextGeneration()
     }
 
     private fun addCellPanelAt(coordinate: Coordinate) {
