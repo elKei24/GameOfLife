@@ -24,7 +24,7 @@ public class NewBoardDialog extends JDialog {
     private UpdatingBoard generatedBoard = null;
 
     public NewBoardDialog(Frame parent) {
-        super(parent, GuiResources.Companion.getDefault().getNewBoardDialogTitle(), true);
+        super(parent, GuiResources.Companion.getDefault().getStringOrKey(GuiResources.NEWBOARDTITLE_KEY), true);
         setContentPane(outerPanel);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);

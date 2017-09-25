@@ -7,23 +7,24 @@ import java.util.logging.Logger
 class GuiResources(locale: Locale = Locale.getDefault()) {
     companion object {
         private const val GUI_TEXTS_FILE = "com/elkei/gol/gui/res/GuiTexts"
-        private const val GUI_TEXT_MAINTITLE = "MainFrame.title"
-        private const val GUI_TEXT_NEWBOARDTITLE = "NewBoardDialog.title"
+        const val MAINTITLE_KEY = "MainFrame.title"
+        const val NEWBOARDTITLE_KEY = "NewBoardDialog.title"
 
         val default = GuiResources()
         private val logger = Logger.getLogger(GuiResources::class.qualifiedName)
     }
-    private val texts: ResourceBundle = ResourceBundle.getBundle(GUI_TEXTS_FILE, locale)
+    private val strings: ResourceBundle = ResourceBundle.getBundle(GUI_TEXTS_FILE, locale)
 
-    fun getMainFrameTitle(): String {
-        return texts.getStringSafe(GUI_TEXT_MAINTITLE)
-    }
+    /**
+     * This function tries to obtain the string value for this key. If it is missing, the key is returned and a log
+     * message will be sent.
+     *
+     * @param key the key for the desired string
+     * @return the string belonging to [key] or, if it is missing, the key itself
+     */
+    fun getStringOrKey(key: String) = strings.getStringOrKey(key)
 
-    fun getNewBoardDialogTitle(): String {
-        return texts.getStringSafe(GUI_TEXT_NEWBOARDTITLE)
-    }
-
-    private fun ResourceBundle.getStringSafe(key: String) : String {
+    private fun ResourceBundle.getStringOrKey(key: String) : String {
         return try {
             getString(key)
         } catch (mre: MissingResourceException) {
