@@ -20,6 +20,8 @@ class MainFrameMenuBar(mainFrame: MainFrame) : JMenuBar() {
     private class MainFrameGenerationsMenu(mainFrame: MainFrame) : JMenu(GenerationsMenuAction()) {
         init {
             add(mainFrame.nextGenerationAction)
+            add(mainFrame.startGenerationUpdatesAction)
+            add(mainFrame.stopGenerationUpdatesAction)
         }
     }
 }
