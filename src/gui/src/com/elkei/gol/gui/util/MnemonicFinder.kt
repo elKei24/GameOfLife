@@ -36,14 +36,30 @@ class MnemonicFinder(private val text: String) {
         return mnemonicEscapeIndex.value
     }
 
-    private fun findMnemonicEscapeIndex(): Int? {
-        var index = -1
-        do {
-            index++
-            index = text.indexOf(MNEMONIC_ESCAPE_CHAR, index)
-            if (index < 0) return null
-        } while (!isProperMnemonicEscapeIndex(index))
-        return index
+    /**
+     * Tries to find the index of the first proper mnemonic escape char (`&`) according to
+     * [MnemonicFinder.isProperMnemonicEscapeIndex]. If no is found, null will be returned.
+     *
+     * @return index of first proper escape char, or null if there is no
+     */
+    private fun findMnemonicEscapeIndex(): Int? = findMnemonicEscapeIndex(0)
+
+    /**
+     * Tries to find the index of the first proper mnemonic escape char (`&`) according to
+     * [MnemonicFinder.isProperMnemonicEscapeIndex] at or after the given index.
+     * If no is found, null will be returned.
+     *
+     * This function is implemented using tail recursion and will so be converted to a regular loop by the compiler.
+     *
+     * @param startIndex the minimum of the returned index
+     * @return index of first proper escape char after or at [startIndex], or null if there is no
+     */
+    private tailrec fun findMnemonicEscapeIndex(startIndex: Int): Int? {
+        val index = text.indexOf(MNEMONIC_ESCAPE_CHAR, startIndex)
+
+        return if (index < 0) null
+        else if (!isProperMnemonicEscapeIndex(index)) findMnemonicEscapeIndex(index + 1)
+        else index
     }
 
     private fun isProperMnemonicEscapeIndex(index: Int) = (index >= 0 && isProperMnemonicCharAt(index + 1))
