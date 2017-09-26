@@ -17,6 +17,7 @@ class GuiResources(private val locale: Locale = Locale.getDefault()) {
         const val FILE_LOAD_ERROR_FORMAT_KEY = "SaveLoadDialog.error.load.format"
         const val FILE_LOAD_ERROR_GENERAL_KEY = "SaveLoadDialog.error.load.unknown"
         const val FILE_SAVE_ERROR_GENERAL_KEY = "SaveLoadDialog.error.save.unknown"
+        const val ABOUT_TITLE_KEY = "About.title"
 
         val default = GuiResources()
         private val logger = Logger.getLogger(GuiResources::class.qualifiedName)

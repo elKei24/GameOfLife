@@ -4,6 +4,7 @@ import com.elkei.gol.gui.actions.ActionsHolder
 import com.elkei.gol.gui.actions.file.FileMenuAction
 import com.elkei.gol.gui.actions.generations.GenerationsMenuAction
 import com.elkei.gol.gui.actions.generations.GenerationsSpeedMenuAction
+import com.elkei.gol.gui.actions.help.HelpMenuAction
 import javax.swing.JMenu
 import javax.swing.JMenuBar
 
@@ -11,6 +12,7 @@ internal class MainFrameMenuBar(actions: ActionsHolder) : JMenuBar() {
     init {
         add(MainFrameFileMenu(actions))
         add(MainFrameGenerationsMenu(actions))
+        add(MainFrameHelpMenu(actions))
     }
 
     private class MainFrameFileMenu(actions: ActionsHolder) : JMenu(FileMenuAction()) {
@@ -38,6 +40,12 @@ internal class MainFrameMenuBar(actions: ActionsHolder) : JMenuBar() {
                 add(actions.fasterGenerationUpdatesAction)
                 add(actions.slowerGenerationUpdatesAction)
             }
+        }
+    }
+
+    private class MainFrameHelpMenu(actions: ActionsHolder) : JMenu(HelpMenuAction()) {
+        init {
+            add(actions.aboutAction)
         }
     }
 }

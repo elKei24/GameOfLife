@@ -15,9 +15,16 @@ import java.awt.event.WindowEvent
 import javax.swing.JFrame
 
 class MainFrame : JFrame(GuiResources.default.getStringOrKey(GuiResources.MAINTITLE_KEY)) {
-    val boardHolder = BoardHolder(UpdatingBoard(Coordinate(4, 5), listOf(Coordinate(0, 0),
-            Coordinate(1, 0), Coordinate(0, 1), Coordinate(1, 1), Coordinate(2, 1),
-            Coordinate(1, 3), Coordinate(2, 3))::contains, msBetweenGenerationUpdates = SIMULATION_DELAY_DEFAULT))
+    private val DEFAULT_BOARD = UpdatingBoard(Coordinate(10, 10), listOf(
+                    Coordinate(3, 5),
+                    Coordinate(4, 3),
+                    Coordinate(4, 5),
+                    Coordinate(5, 4),
+                    Coordinate(5, 5))
+            ::contains,
+            msBetweenGenerationUpdates = SIMULATION_DELAY_DEFAULT)
+
+    val boardHolder = BoardHolder(DEFAULT_BOARD)
     private var actions: ActionsHolder = ActionsHolder(this)
     val safeLoadDialog = SaveLoadDialog(this)
 
