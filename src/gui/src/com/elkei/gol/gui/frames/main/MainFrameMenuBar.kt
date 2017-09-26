@@ -17,6 +17,10 @@ internal class MainFrameMenuBar(actions: ActionsHolder) : JMenuBar() {
         init {
             add(actions.newBoardAction)
             add(actions.resizeAction)
+            addSeparator()
+            add(actions.loadAction)
+            add(actions.safeAction)
+            addSeparator()
             add(actions.exitAction)
         }
     }

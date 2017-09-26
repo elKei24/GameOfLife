@@ -61,6 +61,11 @@ class UpdatingBoard(
     }
     //endregion
 
+    //region secondary constructors
+    constructor(board: Board): this(board.size, {board.getItemForCoordinate(it).living})
+
+    //endregion
+
     //region start/stop thread
     /**
      * Starts updating the board every [msBetweenGenerationUpdates] milliseconds.

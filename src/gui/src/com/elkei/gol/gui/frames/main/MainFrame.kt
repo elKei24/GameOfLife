@@ -2,6 +2,7 @@ package com.elkei.gol.gui.frames.main
 
 import com.elkei.gol.gui.SIMULATION_DELAY_DEFAULT
 import com.elkei.gol.gui.actions.ActionsHolder
+import com.elkei.gol.gui.io.SaveLoadDialog
 import com.elkei.gol.gui.modelpanels.BoardHolderPanel
 import com.elkei.gol.gui.res.GuiResources
 import com.elkei.gol.model.BoardHolder
@@ -18,6 +19,7 @@ class MainFrame : JFrame(GuiResources.default.getStringOrKey(GuiResources.MAINTI
             Coordinate(1, 0), Coordinate(0, 1), Coordinate(1, 1), Coordinate(2, 1),
             Coordinate(1, 3), Coordinate(2, 3))::contains, msBetweenGenerationUpdates = SIMULATION_DELAY_DEFAULT))
     private var actions: ActionsHolder = ActionsHolder(this)
+    val safeLoadDialog = SaveLoadDialog(this)
 
     init {
         defaultCloseOperation = JFrame.EXIT_ON_CLOSE
