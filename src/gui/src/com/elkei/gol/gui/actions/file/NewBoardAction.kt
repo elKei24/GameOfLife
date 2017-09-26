@@ -10,6 +10,13 @@ import javax.swing.KeyStroke
 class NewBoardAction(private val mainFrame: MainFrame) :
         ResourceAction("file.new", accelerator = KeyStroke.getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_DOWN_MASK)) {
     override fun actionPerformed(actionEvent: ActionEvent) {
-        NewBoardDialog(mainFrame).isVisible = true
+        val dialog = NewBoardDialog(mainFrame)
+        dialog.isVisible = true
+
+        val result = dialog.generatedBoard
+        if (result != null) {
+            mainFrame.boardHolder.currentBoard.stopGenerationUpdates()
+            mainFrame.boardHolder.currentBoard = result
+        }
     }
 }
