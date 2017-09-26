@@ -6,9 +6,9 @@ import java.util.*
 
 class UpdatingBoard(
         size: Coordinate,
-        coordinatesOfLivingCells: List<Coordinate> = emptyList(),
+        init: (Coordinate) -> Boolean = {false},
         msBetweenUpdates: Long = 750L
-) : Board(size, coordinatesOfLivingCells), Observable<UpdatingBoardListener> {
+) : Board(size, init), Observable<UpdatingBoardListener> {
     private val listenersManager = ListenersManager<UpdatingBoardListener>()
     private var timer: Timer? = null
     var generationCounter = 0

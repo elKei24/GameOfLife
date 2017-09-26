@@ -14,7 +14,7 @@ internal class BoardTest {
 
     private fun generateTestBoard(): Board {
         return Board(Coordinate(4, 5), listOf(Coordinate(0, 0), Coordinate(1, 0), Coordinate(0, 1),
-                Coordinate(1, 1), Coordinate(2, 1), Coordinate(1, 3), Coordinate(2, 3)))
+                Coordinate(1, 1), Coordinate(2, 1), Coordinate(1, 3), Coordinate(2, 3))::contains)
     }
 
     @Test

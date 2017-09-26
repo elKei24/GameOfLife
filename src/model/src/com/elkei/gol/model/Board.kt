@@ -1,8 +1,8 @@
 package com.elkei.gol.model
 
 /** A class simulating a board of Game Of Live */
-open class Board(size : Coordinate, coordinatesOfLivingCells : List<Coordinate> = emptyList())
-    : Table<Cell>(size, { coordinate -> Cell(coordinatesOfLivingCells.contains(coordinate)) }) {
+open class Board(size: Coordinate, init: (Coordinate) -> Boolean = {false})
+    : Table<Cell>(size, {coordinate -> Cell(init(coordinate)) }) {
 
     @Synchronized
     open fun updateToNextGeneration() {
