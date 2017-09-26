@@ -8,7 +8,7 @@ import java.io.InputStream
 
 class BoardReader private constructor(private val stream: InputStream) {
     companion object {
-        const val MAXIMUM_BOARD_SIZE = 500*500
+        const val MAXIMUM_BOARD_SIZE = 250*250
 
         fun read(stream: InputStream) = BoardReader(stream).read()
     }

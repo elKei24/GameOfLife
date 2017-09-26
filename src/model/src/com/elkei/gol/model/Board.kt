@@ -7,13 +7,20 @@ open class Board(size: Coordinate, init: (Coordinate) -> Boolean = {false})
     @Synchronized
     open fun updateToNextGeneration() {
         val neighbours = Table(size, this::getNumberOfLivingNeighbours)
-        allCoordinates().forEach { coordinate ->
-            getItemForCoordinate(coordinate).updateToNextGeneration(neighbours.getItemForCoordinate(coordinate))
+        allCoordinates()
+                .parallelStream()
+                .forEach { coordinate ->
+                    getItemForCoordinate(coordinate).updateToNextGeneration(neighbours.getItemForCoordinate(coordinate)
+            )
         }
     }
 
     fun getNumberOfLivingNeighbours(coordinate: Coordinate): Int =
-            getNeighbourCoordinatesOf(coordinate).map(this::getItemForCoordinate).sumBy { if (it.living) 1 else 0 }
+            getNeighbourCoordinatesOf(coordinate)
+                    .parallelStream()
+                    .map(this::getItemForCoordinate)
+                    .mapToInt { if (it.living) 1 else 0 }
+                    .sum()
 
     private fun getNeighbourCoordinatesOf(coordinate: Coordinate): List<Coordinate> {
         val diagonalStep = Coordinate(1, 1)

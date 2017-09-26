@@ -18,9 +18,12 @@ class BoardHolder(board: UpdatingBoard = UpdatingBoard(Coordinate(20, 20))) {
     var currentBoard = board
     set(value) {
         if (field != value) {
-            val oldValue = field
-            field = value
-            onInstanceChange(oldValue, value)
+            run {
+                val oldValue = field
+                field = value
+                onInstanceChange(oldValue, value)
+            }
+            System.gc()
         }
     }
 
