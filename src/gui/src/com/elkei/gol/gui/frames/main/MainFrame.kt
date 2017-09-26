@@ -9,6 +9,8 @@ import com.elkei.gol.model.Coordinate
 import com.elkei.gol.model.UpdatingBoard
 import java.awt.BorderLayout
 import java.awt.Dimension
+import java.awt.event.WindowAdapter
+import java.awt.event.WindowEvent
 import javax.swing.JFrame
 
 class MainFrame : JFrame(GuiResources.default.getStringOrKey(GuiResources.MAINTITLE_KEY)) {
@@ -18,7 +20,6 @@ class MainFrame : JFrame(GuiResources.default.getStringOrKey(GuiResources.MAINTI
     private var actions: ActionsHolder = ActionsHolder(this)
 
     init {
-
         defaultCloseOperation = JFrame.EXIT_ON_CLOSE
         jMenuBar = MainFrameMenuBar(actions)
         layout = BorderLayout()
@@ -29,5 +30,11 @@ class MainFrame : JFrame(GuiResources.default.getStringOrKey(GuiResources.MAINTI
         preferredSize = Dimension(700, 500)
         minimumSize = Dimension(170, 150)
         size = preferredSize
+
+        addWindowListener(object : WindowAdapter() {
+            override fun windowClosing(p0: WindowEvent?) {
+                boardHolder.currentBoard.stopGenerationUpdates()
+            }
+        })
     }
 }
