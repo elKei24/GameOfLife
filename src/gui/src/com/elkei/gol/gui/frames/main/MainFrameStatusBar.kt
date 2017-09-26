@@ -32,6 +32,7 @@ internal class MainFrameStatusBar(mainFrame: MainFrame) : JPanel() {
                 override fun heldInstanceChanged(holder: BoardHolder, oldBoard: UpdatingBoard, newBoard: UpdatingBoard) {
                     oldBoard.removeListener(boardGenerationListener)
                     newBoard.addListener(boardGenerationListener)
+                    updateText()
                 }
             })
 

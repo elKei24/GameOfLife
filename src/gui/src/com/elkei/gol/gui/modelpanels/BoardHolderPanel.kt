@@ -20,6 +20,7 @@ class BoardHolderPanel(holder: BoardHolder) : JPanel(BorderLayout()) {
         holder.addBoardHolderListener(object : BoardHolderListener {
             override fun heldInstanceChanged(holder: BoardHolder, oldBoard: UpdatingBoard, newBoard: UpdatingBoard) {
                 boardPanel = UpdatingBoardPanel(newBoard)
+                revalidate()
             }
         })
     }

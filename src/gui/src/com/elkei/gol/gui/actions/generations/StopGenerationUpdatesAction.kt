@@ -23,6 +23,7 @@ class StopGenerationUpdatesAction(private val boardHolder: BoardHolder) :
             override fun heldInstanceChanged(holder: BoardHolder, oldBoard: UpdatingBoard, newBoard: UpdatingBoard) {
                 oldBoard.removeListener(boardRunningListener)
                 newBoard.addListener(boardRunningListener)
+                updateEnabled()
             }
         })
 

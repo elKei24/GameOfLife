@@ -25,6 +25,7 @@ abstract class ChangeGenerationUpdateSpeedAction(
             override fun heldInstanceChanged(holder: BoardHolder, oldBoard: UpdatingBoard, newBoard: UpdatingBoard) {
                 oldBoard.removeListener(speedChangedListener)
                 newBoard.addListener(speedChangedListener)
+                updateEnabled()
             }
         })
 
