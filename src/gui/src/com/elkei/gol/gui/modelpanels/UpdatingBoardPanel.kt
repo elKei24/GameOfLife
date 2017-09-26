@@ -23,10 +23,6 @@ class UpdatingBoardPanel(var board: UpdatingBoard) :
         }
     }
 
-    fun updateToNextGeneration() {
-        board.updateToNextGeneration()
-    }
-
     private fun addNewCellPanelAt(coordinate: Coordinate): CellPanel {
         val c = GridBagConstraints()
         c.fill = GridBagConstraints.BOTH
@@ -40,12 +36,4 @@ class UpdatingBoardPanel(var board: UpdatingBoard) :
     }
 
     private fun getNewCellPanelForCoordinate(coordinate: Coordinate) = CellPanel(board.getItemForCoordinate(coordinate))
-
-    fun startGenerationUpdates() {
-        board.startGenerationUpdates()
-    }
-
-    fun stopGenerationUpdates() {
-        board.stopGenerationUpdates()
-    }
 }

@@ -11,9 +11,9 @@ class ActionsHolder(mainFrame: MainFrame) {
     val exitAction = ExitAction(mainFrame)
 
     //generation actions
-    val nextGenerationAction = NextGenerationAction(mainFrame.boardPanel)
-    val startGenerationUpdatesAction = StartGenerationUpdatesAction(mainFrame.boardPanel)
-    val stopGenerationUpdatesAction = StopGenerationUpdatesAction(mainFrame.boardPanel)
-    val slowerGenerationUpdatesAction = SlowerGenerationUpdatesAction(mainFrame.boardPanel)
-    val fasterGenerationUpdatesAction = FasterGenerationUpdatesAction(mainFrame.boardPanel)
+    val nextGenerationAction = NextGenerationAction(mainFrame.boardHolder)
+    val startGenerationUpdatesAction = StartGenerationUpdatesAction(mainFrame.boardHolder)
+    val stopGenerationUpdatesAction = StopGenerationUpdatesAction(mainFrame.boardHolder)
+    val slowerGenerationUpdatesAction = SlowerGenerationUpdatesAction(mainFrame.boardHolder)
+    val fasterGenerationUpdatesAction = FasterGenerationUpdatesAction(mainFrame.boardHolder)
 }

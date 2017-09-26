@@ -12,4 +12,4 @@ import com.elkei.gol.model.UpdatingBoard
  *
  * @param size Size of the generated [UpdatingBoard]
  */
-internal fun getNewUpdatingBoard(size: Coordinate) = UpdatingBoard(size, msBetweenUpdates = SIMULATION_DELAY_DEFAULT)
+internal fun getNewUpdatingBoard(size: Coordinate) = UpdatingBoard(size, msBetweenGenerationUpdates = SIMULATION_DELAY_DEFAULT)
