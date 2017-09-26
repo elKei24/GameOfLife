@@ -22,6 +22,7 @@ class UpdatingBoard(
     private val listenersManager = ListenersManager<UpdatingBoardListener>()
     private var timer: Timer? = null
 
+    //region properties
     /**
      * The generation counter is increased whenever this board proceeds to the next generation.
      *
@@ -58,7 +59,9 @@ class UpdatingBoard(
         startGenerationUpdates()
         if (oldValue != field) notifySpeedChanged()
     }
+    //endregion
 
+    //region start/stop thread
     /**
      * Starts updating the board every [msBetweenUpdates] milliseconds.
      * If already running, the old thread is stopped and a new one is started immediately.
@@ -85,7 +88,9 @@ class UpdatingBoard(
         timer = null
         running = false
     }
+    //endregion
 
+    //region generation gounter
     /**
      * Updates every cell to the next generation, calling [Cell.updateToNextGeneration].
      * After the generation update, [generationCounter] is increased by one.
@@ -101,6 +106,22 @@ class UpdatingBoard(
     fun resetGenerationCounter() {
         generationCounter = 0
     }
+    //endregion
+
+    //region resizing
+    /**
+     * Returns a new [UpdatingBoard] with the given [size] and the same properties as this instance.
+     * The returned board is not running generation updates.
+     *
+     * @param size the size of the returned [UpdatingBoard]
+     * @return a new [UpdatingBoard] with the given [size] and the same properties as this instance
+     */
+    fun getResized(size: Coordinate): UpdatingBoard {
+        return UpdatingBoard(size, {getItemForCoordinate(it).living}, msBetweenUpdates)
+    }
+    //endregion
+
+    //region Listeners
 
     /**
      * Calls [UpdatingBoardListener.updatingBoardRunningChanged] for each listener
@@ -130,6 +151,7 @@ class UpdatingBoard(
      * @param listener the listener to remove
      */
     override fun removeListener(listener: UpdatingBoardListener) = listenersManager.removeListener(listener)
+    //endregion
 }
 
 interface UpdatingBoardListener {
