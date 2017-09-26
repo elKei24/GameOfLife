@@ -8,7 +8,8 @@ class GuiResources(locale: Locale = Locale.getDefault()) {
     companion object {
         private const val GUI_TEXTS_FILE = "com/elkei/gol/gui/res/GuiTexts"
         const val MAINTITLE_KEY = "MainFrame.title"
-        const val NEWBOARDTITLE_KEY = "NewBoardDialog.title"
+        const val NEW_BOARD_TITLE_KEY = "NewOrResizeBoardDialog.title.new"
+        const val RESIZE_BOARD_TITLE_KEY = "NewOrResizeBoardDialog.title.resize"
         const val GENERATION_LABEL = "MainFrame.status.generations"
 
         val default = GuiResources()

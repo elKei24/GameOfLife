@@ -16,6 +16,7 @@ internal class MainFrameMenuBar(actions: ActionsHolder) : JMenuBar() {
     private class MainFrameFileMenu(actions: ActionsHolder) : JMenu(FileMenuAction()) {
         init {
             add(actions.newBoardAction)
+            add(actions.resizeAction)
             add(actions.exitAction)
         }
     }

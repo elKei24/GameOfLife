@@ -1,8 +1,8 @@
 package com.elkei.gol.gui.frames.newboard;
 
-import com.elkei.gol.gui.res.GuiResources;
 import com.elkei.gol.model.Coordinate;
 import com.elkei.gol.model.UpdatingBoard;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
@@ -12,19 +12,18 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import static com.elkei.gol.gui.ConstantsKt.*;
-import static com.elkei.gol.gui.frames.newboard.UpdatingBoardHelperFactoryKt.getNewUpdatingBoard;
 
-public class NewBoardDialog extends JDialog {
+public abstract class NewOrResizeBoardDialog extends JDialog {
     private JPanel outerPanel;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JSpinner xSpinner;
-    private JSpinner ySpinner;
+    protected JSpinner xSpinner;
+    protected JSpinner ySpinner;
     @Nullable
     private UpdatingBoard generatedBoard = null;
 
-    public NewBoardDialog(Frame parent) {
-        super(parent, GuiResources.Companion.getDefault().getStringOrKey(GuiResources.NEWBOARDTITLE_KEY), true);
+    public NewOrResizeBoardDialog(Frame parent) {
+        super(parent, true);
         setContentPane(outerPanel);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -52,9 +51,12 @@ public class NewBoardDialog extends JDialog {
     }
 
     private void onOK() {
-        generatedBoard = getNewUpdatingBoard(new Coordinate((int) xSpinner.getValue(), (int) ySpinner.getValue()));
+        generatedBoard = generateBoard(new Coordinate((int) xSpinner.getValue(), (int) ySpinner.getValue()));
         dispose();
     }
+
+    @NotNull
+    protected abstract UpdatingBoard generateBoard(Coordinate size);
 
     private void onCancel() {
         generatedBoard = null;
