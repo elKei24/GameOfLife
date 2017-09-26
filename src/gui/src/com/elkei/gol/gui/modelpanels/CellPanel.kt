@@ -7,31 +7,37 @@ import java.awt.Color
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 import javax.swing.JPanel
+import javax.swing.SwingUtilities
 
 class CellPanel(val cell: Cell): JPanel() {
     private var mouseClicking = false
     set(value) {
         if (value != field) {
             field = value
+            if (!value) manipulateCell()
             updateCellState()
         }
     }
+
     private val listeners = ListenersManager<CellManipulationListener>()
 
     init {
         updateCellState()
 
         addMouseListener(object : MouseAdapter() {
-            override fun mouseClicked(p0: MouseEvent?) {
-                cell.living = !cell.living
-                notifyManipulation()
-            }
-
             override fun mousePressed(p0: MouseEvent?) {
                 mouseClicking = true
             }
 
             override fun mouseReleased(p0: MouseEvent?) {
+                mouseClicking = false
+            }
+
+            override fun mouseEntered(p0: MouseEvent?) {
+                mouseClicking = (SwingUtilities.isLeftMouseButton(p0))
+            }
+
+            override fun mouseExited(p0: MouseEvent?) {
                 mouseClicking = false
             }
         })
@@ -41,6 +47,11 @@ class CellPanel(val cell: Cell): JPanel() {
                 updateCellState()
             }
         })
+    }
+
+    private fun manipulateCell() {
+        cell.living = !cell.living
+        notifyManipulation()
     }
 
     private fun updateCellState() {
