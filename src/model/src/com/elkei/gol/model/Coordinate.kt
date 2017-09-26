@@ -27,10 +27,10 @@ data class Coordinate(val x : Int, val y : Int) : Comparable<Coordinate> {
     }
 
     fun getCoordinatesInRectangleWith(other: Coordinate): List<Coordinate> {
-        val minimal = maximalCoordinateOfRectangle(other)
-        val maximal = maximalCoordinateOfRectangleWith(other)
-        return (minimal.x..maximal.x).map { x ->
-            (minimal.y..maximal.y).map { y -> Coordinate(x, y) }
+        val (minX, minY) = maximalCoordinateOfRectangle(other)
+        val (maxX, maxY) = maximalCoordinateOfRectangleWith(other)
+        return (minX..maxX).map { x ->
+            (minY..maxY).map { y -> Coordinate(x, y) }
         }.stream().flatMap { column -> column.stream() }.collect(Collectors.toList())!!
     }
 
