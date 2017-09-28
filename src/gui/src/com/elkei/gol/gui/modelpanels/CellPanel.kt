@@ -33,7 +33,7 @@ class CellPanel(val cell: Cell): JPanel() {
     init {
         updateCellState()
 
-        cell.addListener(object : CellListener {
+        cell.addCellListener(object : CellListener {
             override fun cellLivingChanged(cell: Cell) {
                 updateCellState()
             }

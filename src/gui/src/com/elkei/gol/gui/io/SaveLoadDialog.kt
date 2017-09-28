@@ -8,8 +8,11 @@
 package com.elkei.gol.gui.io
 
 import com.elkei.gol.gui.FILE_EXTENSION
+import com.elkei.gol.gui.MAXIMUM_BOARD_SIZE_X
+import com.elkei.gol.gui.MAXIMUM_BOARD_SIZE_Y
 import com.elkei.gol.gui.res.GuiResources
 import com.elkei.gol.model.Board
+import com.elkei.gol.model.Coordinate
 import com.elkei.gol.model.util.BoardReader
 import com.elkei.gol.model.util.BoardWriter
 import java.awt.Window
@@ -26,6 +29,7 @@ class SaveLoadDialog(private val parent: Window) : JFileChooser() {
 
     init {
         setFilters()
+        isMultiSelectionEnabled = false
     }
 
     private fun setFilters() {
@@ -51,8 +55,8 @@ class SaveLoadDialog(private val parent: Window) : JFileChooser() {
         if (showOpenDialog(parent) != APPROVE_OPTION) return null
         val file = selectedFile
         return try {
-            BoardReader.read(file.inputStream())
-        } catch (e: BoardReader.FormatException) {
+            BoardReader.read(file.inputStream(), Coordinate(MAXIMUM_BOARD_SIZE_X, MAXIMUM_BOARD_SIZE_Y))
+        } catch (e: BoardReader.BoardFileFormatException) {
             showErrorMessage(GuiResources.default.getFormattedStringOrKey(GuiResources.FILE_LOAD_ERROR_FORMAT_KEY, e.localizedMessage),
                     GuiResources.default.getStringOrKey(GuiResources.FILE_LOAD_ERROR_TITLE_KEY))
             null

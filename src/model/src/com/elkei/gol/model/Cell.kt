@@ -8,10 +8,9 @@
 package com.elkei.gol.model
 
 import com.elkei.gol.model.util.ListenersManager
-import com.elkei.gol.model.util.Observable
 import kotlin.properties.Delegates
 
-class Cell(living : Boolean = false) : Observable<CellListener>{
+class Cell(living : Boolean = false) {
     private val listenersManager = ListenersManager<CellListener>()
 
     var living: Boolean by Delegates.observable(living, {
@@ -25,8 +24,9 @@ class Cell(living : Boolean = false) : Observable<CellListener>{
             livingNeighbours == 2 || livingNeighbours == 3
     }
 
-    override fun addListener(listener: CellListener) = listenersManager.addListener(listener)
-    override fun removeListener(listener: CellListener) = listenersManager.removeListener(listener)
+    fun addCellListener(listener: CellListener) = listenersManager.addListener(listener)
+    @Suppress("unused")
+    fun removeCellListener(listener: CellListener) = listenersManager.removeListener(listener)
     private fun notifyCellLivingChanged() = listenersManager.forEach { it.cellLivingChanged(this) }
 }
 

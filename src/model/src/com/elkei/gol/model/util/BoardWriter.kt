@@ -11,21 +11,49 @@ import com.elkei.gol.model.Board
 import java.io.DataOutputStream
 import java.io.OutputStream
 
-class BoardWriter private constructor(private val board: Board, private val stream: OutputStream) {
+/**
+ * Helper class to write board data into a stream.
+ *
+ * @param stream the stream to write into
+ * @param board the board that will be written into stream
+ * @see BoardReader
+ */
+class BoardWriter private constructor(
+        private val board: Board,
+        private val stream: OutputStream
+) {
     companion object {
+        /**
+         * Writes the data of [board] into [stream]. At first, the size of the board is stored using eight bytes,
+         * then the cell states of the first row, then of the second, and so on.
+         * The stream is closed before this function returns.
+         *
+         * @param stream the stream to write into
+         * @param board the board that will be written into stream
+         * @see [BoardReader.read]
+         */
         fun write(stream: OutputStream, board: Board) = BoardWriter(board, stream).write()
     }
 
+    /**
+     * Writes the data of [board] into [stream]. At first, the size of the board is stored using eight bytes,
+     * then the cell states of the first row, then of the second, and so on.
+     * The stream is closed before this function returns.
+     */
     fun write() {
         stream.use { stream ->
-            val stream = DataOutputStream(stream)
-            stream.writeInt(board.size.x)
-            stream.writeInt(board.size.y)
+            val dataStream = DataOutputStream(stream)
+
+            //size
+            dataStream.writeInt(board.size.x)
+            dataStream.writeInt(board.size.y)
+
+            //cells
             board.allCoordinates()
                     .sorted()
                     .map(board::getItemForCoordinate)
                     .map { it.living }
-                    .forEach { stream.writeBoolean(it) }
+                    .forEach { dataStream.writeBoolean(it) }
         }
     }
 }
