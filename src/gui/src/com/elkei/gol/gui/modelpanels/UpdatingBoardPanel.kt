@@ -21,12 +21,16 @@ class UpdatingBoardPanel(var board: UpdatingBoard) :
         JPanel(GridBagLayout(), true), Observable<UpdatingBoardListener> by board {
 
     init {
+        //cell panel listener resets generation counter when the user clicks a cell
         val cellPanelListener = object : CellManipulationListener {
             override fun cellPanelManipulated(cellPane: CellPanel) {
                 board.resetGenerationCounter()
             }
         }
+        //cell mouse listener lets user switch cell states by clicking/dragging
         val cellMouseListener = CellMouseListener()
+
+        //add the cell panels and attach the listeners to them
         board.allCoordinates().forEach { coordinate ->
             val newCellPanel = addNewCellPanelAt(coordinate)
             newCellPanel.addListener(cellPanelListener)
@@ -48,42 +52,48 @@ class UpdatingBoardPanel(var board: UpdatingBoard) :
 
     private fun getNewCellPanelForCoordinate(coordinate: Coordinate) = CellPanel(board.getItemForCoordinate(coordinate))
 
+    /**
+     * This class implements a MouseListener that can be added to [CellPanel]s, allowing the user to switch the state
+     * of many cells at once by pressing the mouse button and moving the pointer over different cells.
+     */
     private class CellMouseListener : MouseAdapter() {
-        var mouseClicking = false
-        var newLiving = true
-        var currentMouseComponent: CellPanel? = null //workaround for mouseRelease called by component where mouse was pressed
+        var mousePressed = false
+        /**
+         * Determines the new state of cells hit by the mouse pointer while the mouse is pressed.
+         * True if the hit cells should come alive, false if they should be dead.
+         */
+        var drawingLivingCells = true
+
+        //workaround for mouseRelease called by component where mouse was pressed and not where it was released
+        var currentMouseComponent: CellPanel? = null
 
         override fun mousePressed(event: MouseEvent) {
-            val sender = event.component
-            if (sender is CellPanel) {
-                currentMouseComponent = sender
-                mouseClicking = true
-                newLiving = !sender.cell.living
-                sender.mousePressed(newLiving)
-            }
+            val sender = event.component as? CellPanel ?: return
+            mousePressed = true
+            currentMouseComponent = sender
+            drawingLivingCells = !sender.cell.living
+            sender.mousePressed(drawingLivingCells)
         }
 
         override fun mouseReleased(event: MouseEvent) {
-            val sender = event.component
-            if (sender is CellPanel && mouseClicking) {
+            if (event.component !is CellPanel) return
+            if (mousePressed) {
                 currentMouseComponent?.mouseReleased()
-                mouseClicking = false
+                mousePressed = false
             }
         }
 
         override fun mouseEntered(event: MouseEvent) {
-            val sender = event.component
-            if (sender is CellPanel && mouseClicking) {
+            val sender = event.component as? CellPanel ?: return
+            if (mousePressed) {
                 currentMouseComponent = sender
-                sender.mousePressed(newLiving)
+                sender.mousePressed(drawingLivingCells)
             }
         }
 
         override fun mouseExited(event: MouseEvent) {
-            val sender = event.component
-            if (sender is CellPanel && mouseClicking) {
-                sender.mouseReleased()
-            }
+            val sender = event.component as? CellPanel ?: return
+            if (mousePressed) sender.mouseReleased()
         }
 
 

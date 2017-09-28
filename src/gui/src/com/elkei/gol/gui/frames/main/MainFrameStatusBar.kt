@@ -28,6 +28,7 @@ internal class MainFrameStatusBar(mainFrame: MainFrame) : JPanel() {
 
     private class GenerationCounterLabel(val boardHolder: BoardHolder) : JLabel() {
         init {
+            //udpate the counter when there is a new generation
             val boardGenerationListener = object : UpdatingBoardListener {
                 override fun updatingBoardGenerationChanged(board: UpdatingBoard, generation: Int) {
                     updateText()
@@ -35,6 +36,7 @@ internal class MainFrameStatusBar(mainFrame: MainFrame) : JPanel() {
             }
             boardHolder.currentBoard.addListener(boardGenerationListener)
 
+            //observe the new board if user loads a board, resizes it or whatever
             boardHolder.addBoardHolderListener(object : BoardHolderListener {
                 override fun heldInstanceChanged(holder: BoardHolder, oldBoard: UpdatingBoard, newBoard: UpdatingBoard) {
                     oldBoard.removeListener(boardGenerationListener)
@@ -43,6 +45,7 @@ internal class MainFrameStatusBar(mainFrame: MainFrame) : JPanel() {
                 }
             })
 
+            //show initial text
             updateText()
         }
 

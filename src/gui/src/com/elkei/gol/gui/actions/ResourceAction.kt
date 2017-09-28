@@ -12,6 +12,9 @@ import java.util.*
 import javax.swing.Icon
 import javax.swing.KeyStroke
 
+/**
+ * An action that loads its name, descriptions and mnemonic from a ResourceBundle using [ActionResources]
+ */
 abstract class ResourceAction(key: String, locale: Locale = Locale.getDefault(), icon: Icon? = null,
                               accelerator: KeyStroke? = null, actionCommand: String? = null, enabled: Boolean = true) :
         CustomizableAction(icon = icon, enabled = enabled) {

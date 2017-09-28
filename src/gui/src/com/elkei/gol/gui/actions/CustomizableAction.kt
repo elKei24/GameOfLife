@@ -13,6 +13,9 @@ import javax.swing.Action
 import javax.swing.Icon
 import javax.swing.KeyStroke
 
+/**
+ * An action that provides properties for the action properties used by Swing components like JMenuItem or JButton
+ */
 open class CustomizableAction(name: String? = null, icon: Icon? = null, shortDescription: String? = null,
                               accelerator: KeyStroke? = null, mnemonic: Int? = null,
                               actionCommand: String? = null, longDescription: String? = null,

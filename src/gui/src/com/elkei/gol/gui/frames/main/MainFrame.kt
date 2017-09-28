@@ -22,7 +22,8 @@ import java.awt.event.WindowEvent
 import javax.swing.JFrame
 
 class MainFrame : JFrame(GuiResources.default.getStringOrKey(GuiResources.MAINTITLE_KEY)) {
-    private val DEFAULT_BOARD = UpdatingBoard(Coordinate(10, 10), listOf(
+    //defaultBoard should not be static because different instances of MainFrame would then use the same board
+    private val defaultBoard = UpdatingBoard(Coordinate(10, 10), listOf(
                     Coordinate(3, 5),
                     Coordinate(4, 3),
                     Coordinate(4, 5),
@@ -31,7 +32,7 @@ class MainFrame : JFrame(GuiResources.default.getStringOrKey(GuiResources.MAINTI
             ::contains,
             msBetweenGenerationUpdates = SIMULATION_DELAY_DEFAULT)
 
-    val boardHolder = BoardHolder(DEFAULT_BOARD)
+    val boardHolder = BoardHolder(defaultBoard)
     private var actions: ActionsHolder = ActionsHolder(this)
     val safeLoadDialog = SaveLoadDialog(this)
 
@@ -47,6 +48,7 @@ class MainFrame : JFrame(GuiResources.default.getStringOrKey(GuiResources.MAINTI
         minimumSize = Dimension(170, 150)
         size = preferredSize
 
+        //stop threads when the user exits the application
         addWindowListener(object : WindowAdapter() {
             override fun windowClosing(p0: WindowEvent?) {
                 boardHolder.currentBoard.stopGenerationUpdates()

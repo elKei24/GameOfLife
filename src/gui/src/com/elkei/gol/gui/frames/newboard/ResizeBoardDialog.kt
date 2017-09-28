@@ -16,6 +16,7 @@ class ResizeBoardDialog(parent: Frame, private val currentBoard: UpdatingBoard) 
     init {
         title = GuiResources.default.getStringOrKey(GuiResources.RESIZE_BOARD_TITLE_KEY)
 
+        //set size spinners to the current board size
         val (sizeX, sizeY) = currentBoard.size
         xSpinner.value = sizeX
         ySpinner.value = sizeY

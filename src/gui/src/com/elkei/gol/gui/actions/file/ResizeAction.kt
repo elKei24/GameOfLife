@@ -16,6 +16,7 @@ import javax.swing.KeyStroke
 
 class ResizeAction(private val mainFrame: MainFrame) :
         ResourceAction("file.resize", accelerator = KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.CTRL_DOWN_MASK)) {
+
     override fun actionPerformed(actionEvent: ActionEvent) {
         val dialog = ResizeBoardDialog(mainFrame, mainFrame.boardHolder.currentBoard)
         dialog.isVisible = true
