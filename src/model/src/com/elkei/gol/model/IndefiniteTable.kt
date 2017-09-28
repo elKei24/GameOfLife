@@ -10,7 +10,7 @@ package com.elkei.gol.model
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
-open class Table<T>(val size : Coordinate, init: (Coordinate) -> T) {
+open class IndefiniteTable<T>(val size : Coordinate, init: (Coordinate) -> T) {
     private val cells = ConcurrentHashMap<Coordinate, T>(Math.abs(size.area()))
 
     init {

@@ -14,8 +14,8 @@ import java.io.OutputStream
 /**
  * Helper class to write board data into a stream.
  *
- * @param stream the stream to write into
- * @param board the board that will be written into stream
+ * @property stream the stream to write into
+ * @property board the board that will be written into stream
  * @see BoardReader
  */
 class BoardWriter private constructor(

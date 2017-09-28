@@ -21,6 +21,8 @@ class ListenersManager<ListenerType> : Observable<ListenerType> {
     /**
      * Adds [listener] to the listeners list. It can then be notified on certain events.
      *
+     * If [listener] is already listening, it is ignored.
+     *
      * @param listener the [ListenerType] that should be added
      */
     override fun addListener(listener: ListenerType) {
@@ -29,6 +31,8 @@ class ListenersManager<ListenerType> : Observable<ListenerType> {
 
     /**
      * Removes a listener. It will no longer be notified on events.
+     *
+     * If [listener] is currently no listener, it will be ignored.
      *
      * @param listener the listener that should be removed
      */

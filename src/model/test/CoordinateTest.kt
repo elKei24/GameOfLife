@@ -76,7 +76,7 @@ internal class CoordinateTest {
     internal fun testMinimalCoordinateOfRectangle() {
         val c1 = Coordinate(5, -3)
         val c2 = Coordinate(2, 2)
-        assertEquals(Coordinate(2, -3), c1.maximalCoordinateOfRectangle(c2))
+        assertEquals(Coordinate(2, -3), c1.minimalCoordinateOfRectangleWith(c2))
     }
 
     @Test

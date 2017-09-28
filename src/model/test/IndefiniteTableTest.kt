@@ -6,18 +6,18 @@
  */
 
 import com.elkei.gol.model.Coordinate
-import com.elkei.gol.model.Table
+import com.elkei.gol.model.IndefiniteTable
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-internal class TableTest {
-    private lateinit var table : Table<Coordinate>
+internal class IndefiniteTableTest {
+    private lateinit var table : IndefiniteTable<Coordinate>
 
     @BeforeEach
     fun initTable() {
-        table = Table(Coordinate(2, 2), { it -> it })
+        table = IndefiniteTable(Coordinate(2, 2), { it -> it })
     }
 
     @Test
@@ -47,13 +47,13 @@ internal class TableTest {
 
     @Test
     fun getHighestCoordinateNegative() {
-        val negativeTable = Table(Coordinate(-3, -1), { it -> it })
+        val negativeTable = IndefiniteTable(Coordinate(-3, -1), { it -> it })
         assertEquals(Coordinate(-2, 0), negativeTable.getMostFarCoordinate())
     }
 
     @Test
     fun getHighestCoordinateEmpty() {
-        val emptyTable = Table(Coordinate(0, 3), { it -> it })
+        val emptyTable = IndefiniteTable(Coordinate(0, 3), { it -> it })
         assertEquals(null, emptyTable.getMostFarCoordinate())
     }
 
